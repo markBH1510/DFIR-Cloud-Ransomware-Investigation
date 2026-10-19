@@ -1,0 +1,40 @@
+title: Volume Shadow Copy Deletion and Recovery Inhibition
+id: 9a43f8e1-512b-47e2-8b9a-41d3c0157922
+status: test
+description: Detects command-line execution of utilities commonly abused by ransomware families (such as Ares) to delete volume shadow copies and prevent system restoration.
+references:
+    - https://attack.mitre.org/techniques/T1490/
+    - IR-2026-CLOUD-001 Investigation
+author: Mark Bahaa (Inspire HUB DFIR Team)
+date: 2026-10-15
+tags:
+    - attack.impact
+    - attack.t1490
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_vssadmin:
+        Image|endswith: '\vssadmin.exe'
+        CommandLine|contains|all:
+            - 'delete'
+            - 'shadows'
+    selection_wmic:
+        Image|endswith: '\wmic.exe'
+        CommandLine|contains|all:
+            - 'shadowcopy'
+            - 'delete'
+    selection_wbadmin:
+        Image|endswith: '\wbadmin.exe'
+        CommandLine|contains|all:
+            - 'delete'
+            - 'catalog'
+    selection_bcdedit:
+        Image|endswith: '\bcdedit.exe'
+        CommandLine|contains:
+            - 'recoveryenabled No'
+            - 'ignoreallfailures'
+    condition: 1 of selection_*
+falsepositives:
+    - Legitimate backup rotation scripts or administrative disaster recovery maintenance (should be documented and whitelisted).
+level: critical

@@ -1,0 +1,41 @@
+title: Suspicious SQL Server CLR Assembly Injection and Execution
+id: c71f8e21-0a32-4759-b148-9f37c3582490
+status: test
+description: Detects SQL Server loading or executing unmanaged/custom CLR assemblies or enabling CLR execution and trustworthy database options, often utilized for post-exploitation command execution.
+references:
+    - https://attack.mitre.org/techniques/T1059/
+    - IR-2026-CLOUD-001 Investigation
+author: Mark Bahaa (Inspire HUB DFIR Team)
+date: 2026-10-15
+modified: 2026-10-15
+tags:
+    - attack.execution
+    - attack.t1059
+    - attack.persistence
+    - attack.t1546
+logsource:
+    category: application
+    product: windows
+    service: mssql
+detection:
+    selection_clr_enable:
+        EventID:
+            - 15457 # Configuration option changed
+        Message|contains|all:
+            - 'clr enabled'
+            - 'from 0 to 1'
+    selection_assembly_create:
+        EventID:
+            - 15457
+            - 17137
+        Message|contains:
+            - 'CREATE ASSEMBLY'
+            - 'ALTER ASSEMBLY'
+            - 'sp_addextendedproc'
+    selection_trustworthy:
+        Message|contains|all:
+            - 'SET TRUSTWORTHY ON'
+    condition: selection_clr_enable or selection_assembly_create or selection_trustworthy
+falsepositives:
+    - Legitimate legacy enterprise database software utilizing .NET CLR procedures (rare in modern production environments).
+level: high

@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+ENV/
+
+# Forensic dumps / Sensitive raw captures (prevent accidental leak)
+*.pcap
+*.pcapng
+*.raw
+*.dmp
+*.vmem
+*.ldf
+*.mdf
+*.bak
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
