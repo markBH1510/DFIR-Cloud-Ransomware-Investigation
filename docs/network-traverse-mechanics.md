@@ -1,7 +1,7 @@
 # Network Forensic Traverse & Packet Flow Deconstruction
 
 **Case Reference:** IR-2026-CLOUD-001  
-**Author:** Mark Bahaa (Lead DFIR Investigator, Inspire HUB)
+**Author:** Mark (Lead DFIR Investigator)
 
 ---
 
