@@ -227,7 +227,6 @@ DFIR-Cloud-Ransomware-Investigation/
 
 ## 8. Author & Investigator Sign-Off
 
-**Lead DFIR Investigator:** Mark Bahaa  
-**Team:** Inspire HUB Digital Forensics & Incident Response Practice  
+**Lead DFIR Investigator:** Mark  
 **Classification:** Sanitized Case Study // Master Technical Portfolio Showcase  
 **Incident Reference:** IR-2026-CLOUD-001  
