@@ -1,7 +1,7 @@
 # Comprehensive Forensic Incident Timeline
 
 **Case Identifier:** IR-2026-CLOUD-001  
-**Investigator:** Mark Bahaa (Lead DFIR Investigator, Inspire HUB)  
+**Investigator:** Mark (Lead DFIR Investigator)  
 **Target Host:** `PROD-DB01.CORP.LOCAL` (`10.50.200.7`)  
 **Threat Actor Source:** `198.51.100.133` (External Threat Node / AS60068, workstation hostname: `ATTACKER-NODE-01`)
 
